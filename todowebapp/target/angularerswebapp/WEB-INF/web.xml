@@ -1,0 +1,71 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+  <servlet>
+    <servlet-name>AuthServlet</servlet-name>
+    <servlet-class>servlets.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AuthServlet</servlet-name>
+    <url-pattern>/auth</url-pattern>
+  </servlet-mapping>
+  <listener>
+    <listener-class>servlets.ContextListener</listener-class>
+  </listener>
+
+  <context-param>
+    <param-name>dbUrl</param-name>
+    <param-value>jdbc:postgresql://sparknov27.cpijza42wykv.us-east-2.rds.amazonaws.com:5432/inclass</param-value>
+  </context-param>
+  <context-param>
+    <param-name>dbUsername</param-name>
+    <param-value>grant_beidel</param-value>
+  </context-param>
+  <context-param>
+    <param-name>dbPassword</param-name>
+    <param-value>password123</param-value>
+  </context-param>
+  <context-param>
+    <param-name>dbDriver</param-name>
+    <param-value>org.postgresql.Driver</param-value>
+  </context-param>
+</web-app>
+
+
+
+
+
+
+
+
+<!--<servlet>-->
+    <!--&lt;!&ndash;The servlet name can be any string value&ndash;&gt;-->
+    <!--<servlet-name>CreateReimb</servlet-name>-->
+    <!--&lt;!&ndash;This is the fully qualified class name&ndash;&gt;-->
+    <!--<servlet-class>servlets.LoginServlet</servlet-class>-->
+  <!--</servlet>-->
+  <!--<servlet-mapping>-->
+    <!--&lt;!&ndash;This servlet must be a corresponding servlet name of a servlet&ndash;&gt;-->
+    <!--<servlet-name>CreateReimb</servlet-name>-->
+    <!--&lt;!&ndash;This can be any url pattern&ndash;&gt;-->
+    <!--<url-pattern>/createreimbs</url-pattern>-->
+  <!--</servlet-mapping>-->
+
+
+
+
+
+
+  <!--<servlet>-->
+    <!--<servlet-name>ListReimbs</servlet-name>-->
+    <!--<servlet-class>servlets.LoginServlet</servlet-class>-->
+  <!--</servlet>-->
+  <!--<servlet-mapping>-->
+    <!--<servlet-name>ListReimbs</servlet-name>-->
+    <!--<url-pattern>/listreimbs</url-pattern>-->
+  <!--</servlet-mapping>-->
+<!--</web-app>-->
+
+

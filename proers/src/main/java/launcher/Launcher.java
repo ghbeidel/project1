@@ -8,6 +8,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
@@ -42,7 +43,7 @@ public class Launcher {
         temp.setProperty("hibernate.connection.url", "jdbc:postgresql://sparknov27.cpijza42wykv.us-east-2.rds.amazonaws.com:5432/inclass");
         temp.setProperty("hibernate.connection.pool_size","1");
 
-        temp.setProperty("hibernate.hbm2ddl.auto","update");
+     //   temp.setProperty("hibernate.hbm2ddl.auto","update");
         temp.setProperty("hibernate.show_sql","true");
         temp.setProperty("hibernate.format_sql","true");
 
@@ -125,7 +126,6 @@ public class Launcher {
         session.close();
 
     }
-
 
 
 }

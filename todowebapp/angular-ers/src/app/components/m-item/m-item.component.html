@@ -1,0 +1,10 @@
+<div [ngClass]="setClasses()">
+  <p>
+    {{ reimbursement.id }}
+    {{ reimbursement.title }}
+    <input (change)="approve(reimbursement)" type="radio" name="status"> Approve
+    <input (change)="deny(reimbursement)" type="radio" name="status"> Deny
+    <input (change)="pending(reimbursement)" type="radio" name="status"> Pending
+    <button (click)="onDelete(reimbursement)" class="del">x</button>
+  </p>
+</div>

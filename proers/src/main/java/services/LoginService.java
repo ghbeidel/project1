@@ -9,18 +9,18 @@ import java.util.List;
 public class LoginService {
    private static SessionFactory sessionFactory;
 
-    public boolean authenticate(String userName, String password){
-
-        User user = getUserByUserName(userName);
-
-        if(user != null && user.getPassword().equals(password) && user.getUserName().equals(userName)){
-            return true;
-        }else{
-
-        return false;
-
-        }
-    }
+//    public boolean authenticate(String userName, String password){
+//
+//      //  User user = getUserByUserName(userName);
+//
+//        if(user != null && user.getPassword().equals(password) && user.getUserName().equals(userName)){
+//            return true;
+//        }else{
+//
+//        return false;
+//
+//        }
+//    }
 
 
     public User getIdByUserName(String userName){

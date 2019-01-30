@@ -1,5 +1,7 @@
 package entities;
 
+import org.hibernate.SessionFactory;
+
 import javax.persistence.*;
 import java.sql.Blob;
 import java.sql.Timestamp;
@@ -8,27 +10,28 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "ERS_REIMBURSEMENTS")
 public class Reimb {
-    @Override
-    public String toString() {
-        return "Reimb{" +
-                "reimbId=" + reimbId +
-                ", amount=" + amount +
-                ", submitted=" + submitted +
-                ", resolved=" + resolved +
-                ", description='" + description + '\'' +
-                ", reciept=" + reciept +
-                ", typeId=" + typeId +
-                ", statusId=" + statusId +
-                ", author=" + author +
-                ", resolver=" + resolver +
-                '}';
-    }
+
+
 
     @Id
     @Column(name = "REIMBURSEMENT_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reimbId;
 
+    public Reimb (){}
+    public Reimb(Timestamp submitted, String description, float amount, Status statusId, Type typeId, User author) {
+        this.submitted = submitted;
+        this.description = description;
+        this.amount = amount;
+        this.statusId = statusId;
+        this.typeId = typeId;
+        this.author = author;
+    }
+
+    private java.sql.Timestamp submitted;
+    private java.sql.Timestamp resolved;
+    private String description;
+    private java.sql.Blob reciept;
 
 
     private float amount;
@@ -99,12 +102,6 @@ public class Reimb {
 
 
 
-    private java.sql.Timestamp submitted;
-    private java.sql.Timestamp resolved;
-    private String description;
-    private java.sql.Blob reciept;
-
-
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name= "STATUSID")
@@ -113,7 +110,6 @@ public class Reimb {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name= "TypeID")
     private Type typeId;
-
 
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -140,7 +136,21 @@ public class Reimb {
         this.author = author;
     }
 
-
+    @Override
+    public String toString() {
+        return "Reimb{" +
+                "reimbId=" + reimbId +
+                ", amount=" + amount +
+                ", submitted=" + submitted +
+                ", resolved=" + resolved +
+                ", description='" + description + '\'' +
+                ", reciept=" + reciept +
+                ", typeId=" + typeId +
+                ", statusId=" + statusId +
+                ", author=" + author +
+                ", resolver=" + resolver +
+                '}';
+    }
 
 
 

@@ -1,0 +1,15 @@
+<h1>Reimbursement Request</h1>
+<form class="form" (ngSubmit)="onSubmit()">
+  <div>
+    <span>Select the type of reimbursement</span>
+    <select>
+        <option value="lodging">Lodging</option>
+        <option value="travel">Travel</option>
+        <option value="food">Food</option>
+        <option value="other">Other</option>
+      </select>
+  </div>
+  <div>
+    <input type="submit" routerLink="/e-options">
+  </div>
+</form>

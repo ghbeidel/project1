@@ -5,6 +5,7 @@ package servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entities.User;
 import services.LoginService;
+import services.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,10 +15,10 @@ import java.io.IOException;
 
 public class LoginServlet extends HttpServlet {
 
-    private LoginService loginService;
+    private UserService userService;
 
     public void init() throws ServletException{
-        loginService = new LoginService();
+        userService = new UserService();
 
         try{
             Class.forName("com.fasterxml.jackson.databind.ObjectMapper");
@@ -32,26 +33,30 @@ public class LoginServlet extends HttpServlet {
         User authUser = new ObjectMapper().readValue(req.getInputStream(), User.class);
 
         String userName = req.getParameter("userId");
-        String password = req.getParameter("password");
+        String password = req.getParameter("password_hash");
 
-        LoginService loginService = new LoginService();
-        boolean result = loginService.authenticate(userName, password);
 
-        User user = loginService.getUserByUserName(userName);
-        if(result == true){
-            req.getSession().setAttribute("user",user);
-            resp.sendRedirect("home.jsp");
-
+//
+      //  User user = loginService.getUserByUserName(userName);
+        if(authUser == null){
+            resp.setStatus(400);
+            resp.getWriter().write("nothing submitted");
+            return;
         }else{
-            resp.sendRedirect("error.jsp");
+            authUser = this.userService.authUser(authUser);
+
+            if(authUser != null){
+                resp.setStatus(200);
+                resp.getWriter().write(new ObjectMapper().writeValueAsString(authUser));
+                return;
+            }
         }
 
 
 
-        if(authUser != null){
-            resp.setStatus(200);
-            resp.getWriter().write(new ObjectMapper().writeValueAsString(authUser));
-        }
+        resp.setStatus(401);
+        resp.getWriter().write("Email or password incoreect");
+
 
     }
 }

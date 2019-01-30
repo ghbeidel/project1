@@ -1,28 +1,41 @@
 package services;
 
+import data.IReimbDao;
+import data.ReimbDao;
+import data.UserDao;
 import entities.Reimb;
+import entities.Role;
 import entities.User;
 
 import java.util.List;
 
 public class ReimbService {
 
-    public List<Reimb> getAllReimb(int roleId){
-        List<Reimb> reimb = null;
+    private IReimbDao reimbDao;
 
-        return reimb;
+    public ReimbService() {
+        this.reimbDao = new ReimbDao();
     }
 
+    public List<Reimb> getAllReimbs(User u) {
+        List<Reimb> reimbs = this.reimbDao.getListOfReimb();
+        Role role = new Role();
 
-    public List<Reimb> getAllReimbByUserId(int userId){
-        List<Reimb> reimb = null;
-        User user = null;
+
+        if (u != null) {
+            if (u.getRoleId().equals("Manager")) {
+                return reimbs;
+            }else if (u.getRoleId().equals("Employee")) {
+                return reimbs;
+            }
+            }else{
+                reimbs = null;
+            }
 
 
-        return reimb;
+
+            return reimbDao.getListOfReimb();
+
+
     }
-
-
-
-
 }

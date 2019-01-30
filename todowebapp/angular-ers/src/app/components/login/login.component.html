@@ -1,0 +1,25 @@
+<h1>Login</h1>
+<form class="form" (ngSubmit)="loginSubmit()">
+  <div>
+    <span>Username</span>
+      <input
+            type="text"
+            name="Bret"
+            placeholder="Enter Username..."
+            [(ngModel)]="username">
+  </div>
+  <div>
+    <span>Password</span>
+      <input
+           type="password"
+           name="1"
+           placeholder="Enter Password..."
+           [(ngModel)]="password">
+  </div>
+  <div>
+    <input type="submit" value="Submit" routerLink="/e-options">
+  </div>
+  <div>
+    <input type="submit" value="Submit" routerLink="/m-view">
+  </div>
+</form>

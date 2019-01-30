@@ -1,10 +1,22 @@
 package entities;
 
+import org.hibernate.SessionFactory;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "ERS_USER")
 public class User{
+
+    public User(){}
+    public User(String userName, String firstName, String lastName, String email, Role roleId) {
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.roleId = roleId;
+    }
+
 
     @Id
     @Column(name = "USER_ID")
@@ -15,18 +27,20 @@ public class User{
         return id;
     }
 
-    private String password;
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     @Column(unique = true)
     private String userName;
+
+    @Column(nullable = false)
+    private String password_hash;
+
+    public String getPassword_hash() {
+        return password_hash;
+    }
+
+    public void setPassword_hash(String password_hash) {
+        this.password_hash = password_hash;
+    }
 
     private String firstName;
     private String lastName;
@@ -99,7 +113,7 @@ public class User{
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", roleId=" +
+                ", roleId=" + roleId +
                 '}';
     }
 }
